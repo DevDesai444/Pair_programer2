@@ -1,12 +1,12 @@
-# CodeSight
+# ARES
 
-CodeSight is an agentic AI code review pipeline designed and implemented by **Dev Desai**.
+ARES is an agentic AI code review pipeline designed and implemented by **Dev Desai**.
 
 This project explores a simple question with real engineering consequences:
 
 > Can we build an AI reviewer that produces comments developers would actually act on, instead of generating generic feedback that gets ignored?
 
-My answer in this repository is a verification-first review system that does more than label code as risky. CodeSight gathers repository context, reasons over changed code, generates candidate findings, synthesizes fixes and regression tests, scores the usefulness of those findings, and only keeps the comments that survive a multi-stage quality gate.
+My answer in this repository is a verification-first review system that does more than label code as risky. ARES gathers repository context, reasons over changed code, generates candidate findings, synthesizes fixes and regression tests, scores the usefulness of those findings, and only keeps the comments that survive a multi-stage quality gate.
 
 Unlike many "AI reviewer" demos that stop at prompt engineering, this project treats code review as a systems problem. The pipeline combines graph-aware context retrieval, structured LLM reasoning, static analysis, verification, ranking, and feedback learning into a single orchestrated workflow aimed at one business outcome: **high-signal comments that are plausible, actionable, and worth a developer's time.**
 
@@ -28,7 +28,7 @@ This repository was built as a research-oriented engineering project to demonstr
 
 ## Executive Summary
 
-CodeSight reviews a pull request by combining source code structure, repository history, static analysis, and LLM-based reasoning. The pipeline does not trust first-pass model output. Instead, it runs candidate comments through a staged loop:
+ARES reviews a pull request by combining source code structure, repository history, static analysis, and LLM-based reasoning. The pipeline does not trust first-pass model output. Instead, it runs candidate comments through a staged loop:
 
 1. Identify the most important changed code regions.
 2. Gather structural and semantic context around those regions.
@@ -55,7 +55,7 @@ Most AI-generated code review comments fail for predictable reasons:
 
 That creates a trust problem. If an AI reviewer produces many low-value comments, developers quickly learn to ignore it.
 
-CodeSight is built around the opposite philosophy:
+ARES is built around the opposite philosophy:
 
 **fewer comments, stronger comments, and verifiable comments.**
 
@@ -118,7 +118,7 @@ For a hiring manager, the important signal here is not only that the system work
 
 ## System Architecture
 
-CodeSight is composed of five major layers:
+ARES is composed of five major layers:
 
 1. **Ingestion and repository preparation**
 2. **Code understanding and graph context**
@@ -143,7 +143,7 @@ GitHub PR
 
 ### Architecture Diagram
 
-![CodeSight architecture](/Users/DEVDESAI1/Desktop/University_at_Buffalo/Projects/Pair_programer2/docs/current-architecture-simple.svg)
+![ARES architecture](/Users/DEVDESAI1/Desktop/University_at_Buffalo/Projects/Pair_programer2/docs/current-architecture-simple.svg)
 
 ### Architectural Rationale
 
@@ -154,7 +154,7 @@ The system intentionally separates **generation** from **validation**.
 - The **Critic** is optimized for usefulness scoring and historical-pattern filtering.
 - The **Investigator** is optimized for deciding where the model should spend its attention.
 
-This separation is important. In practice, many AI systems fail because one model is expected to do everything at once. CodeSight decomposes the workflow so each stage has a narrower responsibility and better failure containment.
+This separation is important. In practice, many AI systems fail because one model is expected to do everything at once. ARES decomposes the workflow so each stage has a narrower responsibility and better failure containment.
 
 ---
 
@@ -186,7 +186,7 @@ Core modules:
 
 ### 3. Review Scope Selection
 
-Not every changed file deserves the same scrutiny. CodeSight narrows the reviewable surface using:
+Not every changed file deserves the same scrutiny. ARES narrows the reviewable surface using:
 
 - changed source files
 - diff ranges
@@ -273,7 +273,7 @@ Several principles shaped the implementation:
 
 ### Verification Over Confidence
 
-A confident comment is not automatically a correct or useful comment. CodeSight prefers evidence and checks over stylistic confidence.
+A confident comment is not automatically a correct or useful comment. ARES prefers evidence and checks over stylistic confidence.
 
 ### Fewer, Better Comments
 
@@ -371,7 +371,7 @@ That framing is critical if the goal is to build developer trust.
 
 ## Tooling and Infrastructure
 
-CodeSight integrates several external systems:
+ARES integrates several external systems:
 
 - **GitHub** for pull request data, cloning, comments, and ground-truth review collection
 - **Neo4j** for code graph persistence and structural querying
@@ -492,7 +492,7 @@ In other words, this repository is not only a code sample. It is evidence of pro
 
 ## Closing Note
 
-CodeSight represents the kind of engineering work I enjoy most: turning ambiguous AI potential into a concrete, testable, technically disciplined system.
+ARES represents the kind of engineering work I enjoy most: turning ambiguous AI potential into a concrete, testable, technically disciplined system.
 
 If you are reading this as a reviewer, recruiter, or hiring manager, the main takeaway is simple:
 
