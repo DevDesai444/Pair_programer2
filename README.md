@@ -143,7 +143,25 @@ GitHub PR
 
 ### Architecture Diagram
 
-![ARES architecture](docs/current-architecture-simple.svg)
+```mermaid
+flowchart TD
+    A["GitHub Pull Request"] --> B["Clone PR Snapshot"]
+    B --> C["Load or Build Repository Graph"]
+    C --> D["Map Diff Hunks to Code Nodes"]
+    D --> E["Investigator<br/>Select review targets and collect context"]
+    E --> F["Reviewer<br/>Generate structured candidate comments"]
+    D --> G["Static Analysis<br/>Ruff and Semgrep findings"]
+    F --> H["Verifier<br/>Synthesize fix, validate diff, generate test"]
+    H --> I["Critic<br/>Score actionability and historical usefulness"]
+    G --> J["Ranker<br/>Merge, deduplicate, cap final comments"]
+    I --> J
+    J --> K["Post Review Comments to GitHub"]
+    K --> L["Feedback Collector<br/>Store outcomes and examples"]
+    L --> M["Feedback Learner / Pinecone"]
+    M -.-> E
+    M -.-> F
+    M -.-> I
+```
 
 ### Architectural Rationale
 
