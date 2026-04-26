@@ -143,7 +143,7 @@ GitHub PR
 
 ### Architecture Diagram
 
-![ARES architecture](/Users/DEVDESAI1/Desktop/University_at_Buffalo/Projects/Pair_programer2/docs/current-architecture-simple.svg)
+![ARES architecture](docs/current-architecture-simple.svg)
 
 ### Architectural Rationale
 
